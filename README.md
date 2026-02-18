@@ -1,120 +1,112 @@
-🚗 BT Car Controller (Arduino Bluetooth Car)
+# 🚗 BT Car Controller (Arduino Bluetooth Car)
 
-An Arduino-based Bluetooth-controlled car using the HC-05 Bluetooth module and L293D/L298 motor driver, controllable via the Android app “BT Car Controller” available on the Google Play Store.
+An Arduino-based Bluetooth-controlled robotic car using an **HC-05 Bluetooth module** and **L293D/L298 motor driver**, controlled via the Android app **BT Car Controller** available on the Google Play Store.
 
-This project allows you to control a robotic car wirelessly using simple character commands sent from an Android phone.
+---
 
-📱 Android App
+## 📱 Android App
 
-App Name: BT Car Controller
-Platform: Android (Google Play Store)
+**App Name:** BT Car Controller  
+**Platform:** Android (Google Play Store)
 
-The app sends single-character commands over Bluetooth to control the car’s movement.
+The app sends single-character commands over Bluetooth to control the movement of the car.
 
-🛠️ Hardware Requirements
+---
 
-Arduino Uno / Nano
+## 🛠️ Hardware Requirements
 
-HC-05 Bluetooth Module
+- Arduino Uno / Nano  
+- HC-05 Bluetooth Module  
+- L293D or L298 Motor Driver  
+- 2 × DC Motors  
+- Robot car chassis  
+- External battery/power supply  
+- Jumper wires  
 
-L293D or L298 Motor Driver
+---
 
-2 × DC Motors
+## 🔌 Pin Configuration
 
-Car chassis + wheels
+| Arduino Pin | Component |
+|------------|----------|
+| 3 | HC-05 TX |
+| 2 | HC-05 RX |
+| 5 | ENA (Motor Enable A) |
+| 6 | Motor 1 IN1 |
+| 7 | Motor 1 IN2 |
+| 9 | Motor 2 IN3 |
+| 10 | Motor 2 IN4 |
+| 8 | ENB (Motor Enable B) |
 
-External power supply (battery pack)
+---
 
-Jumper wires
+## 📡 Bluetooth Details
 
-🔌 Pin Configuration
-Arduino Pin	Component
-3	HC-05 TX
-2	HC-05 RX
-5	Motor Driver ENA
-6	Motor 1 IN1
-7	Motor 1 IN2
-9	Motor 2 IN3
-10	Motor 2 IN4
-8	Motor Driver ENB
-📡 Bluetooth Communication
+- **Module:** HC-05  
+- **Baud Rate:** 9600  
+- **Communication:** SoftwareSerial  
 
-Baud Rate: 9600
+Default HC-05 pairing PIN is usually `1234` or `0000`.
 
-Protocol: Serial (SoftwareSerial)
+---
 
-Module: HC-05
+## 🎮 Control Commands
 
-The Bluetooth module communicates with Arduino using software serial pins (2, 3).
+| Command | Function |
+|-------|---------|
+| `F` | Move Forward |
+| `B` | Move Backward |
+| `L` | Turn Left |
+| `R` | Turn Right |
+| `S` | Stop |
 
-🎮 Control Commands
+Commands are case-insensitive. Newline and carriage return characters are ignored.
 
-The Android app sends the following characters:
+---
 
-Command	Action
-F	Move Forward
-B	Move Backward
-L	Turn Left
-R	Turn Right
-S	Stop
+## ⚙️ Working Principle
 
-Commands are automatically converted to uppercase, so lowercase inputs also work.
+1. Arduino initializes Bluetooth and motor pins  
+2. HC-05 receives commands from the Android app  
+3. Arduino reads incoming characters via Bluetooth  
+4. Motor driver responds based on command  
+5. Motors stop immediately when `S` is received  
 
-⚙️ How It Works
+---
 
-Arduino initializes Bluetooth and motor driver pins
+## ▶️ How to Use
 
-HC-05 receives commands from the Android app
+1. Upload the code to Arduino  
+2. Power the motor driver and Arduino  
+3. Pair your phone with HC-05  
+4. Open **BT Car Controller** app  
+5. Connect to HC-05  
+6. Control the car wirelessly  
 
-Arduino reads the character via Bluetooth
+---
 
-Based on the command, motors are driven accordingly
 
-S stops all motors immediately
 
-Newline (\n) and carriage return (\r) characters are ignored to prevent accidental behavior.
-
-▶️ Setup Instructions
-
-Upload the code to Arduino
-
-Power the motor driver separately (recommended)
-
-Pair HC-05 with your phone (default PIN: 1234 or 0000)
-
-Open BT Car Controller app
-
-Connect to HC-05
-
-Start controlling the car 🎉
-
-🧠 Code Highlights
-
-Uses SoftwareSerial for Bluetooth communication
-
-Modular motor control functions (forward(), backward(), etc.)
-
-Clean switch-case logic for command handling
-
-Safety handling for junk serial data
-
-📂 File Structure
+## 📂 File Structure
 BT-Car-Controller/
 │
 ├── bluetooth_car.ino
 └── README.md
 
-🚀 Future Improvements
 
-Speed control using PWM
+---
 
-Obstacle avoidance using ultrasonic sensor
+## 🚀 Future Enhancements
 
-Camera streaming via ESP32
+- PWM-based speed control  
+- Obstacle avoidance sensors  
+- ESP32 upgrade  
+- Camera streaming  
 
-iOS support
+---
 
-👤 Author
+## 👤 Author
 
-Developed by Soban Saeed
-📍 Arduino | Robotics | Embedded Systems
+**Soban Saeed**  
+Arduino • Embedded Systems • Robotics
+
